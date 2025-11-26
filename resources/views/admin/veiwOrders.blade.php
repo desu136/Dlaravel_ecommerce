@@ -22,7 +22,18 @@
                 <td style="padding: 12px;">{{$order->product->product_price}}</td>
                 <td style="padding: 12px;"><img style="max-width: 100%; height: auto;" src="{{ asset('products/'.$order->product->product_image) }}" alt="Product Image"></td>
                 
-            <td style="padding:12px"></td>
+            <td style="padding:12px">
+      <form action="{{ route('admin.change_status',$order->id) }}" method="post">
+        @csrf 
+       <select name="status" id=""> 
+        <option value="{{$order->status}}"> {{$order->status}}</option>
+        <option value="Delivered">  Delivered</option>
+        <option value="pending">  pending</option>
+       </select>
+       <input type="submit" name="submit" value="submit" onclick="return confirm('Are you to submit')">
+      </form>
+
+            </td>
             
             </tr>
         @endforeach  

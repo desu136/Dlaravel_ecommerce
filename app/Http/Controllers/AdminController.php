@@ -150,4 +150,10 @@ public function viewOrders(){
   $orders=Orders::all();
   return view('admin.veiwOrders',compact('orders'));
 }
+public function changeStatus(Request $request,$id){
+$order=Orders::findOrFail($id);
+$order->status=$request->status;
+$order->save();
+return redirect()->back();
+}
 }

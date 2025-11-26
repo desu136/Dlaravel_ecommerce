@@ -38,6 +38,7 @@ Route::get('/Delete_product/{id}', [AdminController::class, 'delete_product'])->
 Route::get('/update_product/{id}', [AdminController::class, 'updateProduct'])->name('admin.updateProduct');
 Route::post('/update_product/{id}', [AdminController::class, 'postUpdateProduct'])->name('admin.postUpdateProduct');
 Route::post('/search', [AdminController::class, 'searchProduct'])->name('admin.searchProduct');
+Route::post('/changeStatus/{id}', [AdminController::class, 'changeStatus'])->name('admin.change_status');
 });
 
 
