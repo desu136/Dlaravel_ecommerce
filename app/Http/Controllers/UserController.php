@@ -99,4 +99,8 @@ return redirect()->back();
   }
  return redirect()->back()->with('confirm_order', "Order confirmed");
  }
+ public function myOrder(){
+  $orders=Orders::where('user_id',Auth::id())->get();
+  return view('viewMyOrder', compact('orders'));
+ }
 }

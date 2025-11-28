@@ -11,6 +11,7 @@ Route::get('/productDetail/{id}',[UserController::class,'productDetails'])->name
 Route::get('/viewAllProducts',[UserController::class,'viewAllProducts'])->name('viewAllProducts');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/myorder', [UserController::class, 'myOrder'])->middleware(['auth', 'verified'])->name('myOrders');
 Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->middleware(['auth', 'verified'])->name('addToCart');
 Route::get('/cartproduct', [UserController::class, 'cartproduct'])->middleware(['auth', 'verified'])->name('viewcartproduct');
 Route::get('/revomeCartProducts/{id}', [UserController::class, 'revome_cart_products'])->middleware(['auth', 'verified'])->name('removeCartProducts');
@@ -39,6 +40,7 @@ Route::get('/update_product/{id}', [AdminController::class, 'updateProduct'])->n
 Route::post('/update_product/{id}', [AdminController::class, 'postUpdateProduct'])->name('admin.postUpdateProduct');
 Route::post('/search', [AdminController::class, 'searchProduct'])->name('admin.searchProduct');
 Route::post('/changeStatus/{id}', [AdminController::class, 'changeStatus'])->name('admin.change_status');
+Route::get('/downloadpdf/{id}', [AdminController::class, 'downloadPdf'])->name('admin.downloadpdf');
 });
 
 
