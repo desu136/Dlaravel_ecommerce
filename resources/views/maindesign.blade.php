@@ -11,10 +11,10 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="front_end/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="front_end/images/mylogo.jpeg" type="image/x-icon">
 
   <title>
-    Giftos
+  E-commerce website
   </title>
 
   <!-- slider stylesheet -->
@@ -27,6 +27,10 @@
   <link href="front_end/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="front_end/css/responsive.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +40,7 @@
       <nav class="navbar navbar-expand-lg custom_nav-container ">
         <a class="navbar-brand" href="index.html">
           <span>
-            Giftos
+            E-commerce website
           </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  ">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href={{ route('index') }}>Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="shop.html">
@@ -117,19 +121,29 @@
                     <div class="detail-box"> 
                       <h1>
                         Welcome To Our <br>
-                        Gift Shop
+                        E-commerce website
                       </h1>
                       <p>
-                        Sequi perspiciatis nulla reiciendis, rem, tenetur impedit, eveniet non necessitatibus error distinctio mollitia suscipit. Nostrum fugit doloribus consequatur distinctio esse, possimus maiores aliquid repellat beatae cum, perspiciatis enim, accusantium perferendis.
+                        <div> 
+                        Website Purpose  
+This website is developed to enhance my development skills and is not intended to be a real eCommerce platform.
+</div>
+  <div> 
+Developer Availability  
+I am open to working with anyone seeking a developer, particularly on Laravel-related projects.
+</div>
+<div> 
+Personal Information  
+My name is Desu Kasaye, and I am a software engineering student.</div>
                       </p>
-                      <a href="">
+                      <a href="mailto:desukasaye19@gmail.com">
                         Contact Us
                       </a>
                     </div>
                   </div>
                   <div class="col-md-5 ">
                     <div class="img-box">
-                      <img style="width:600px" src="images/image3.jpeg" alt="" />
+                      <img style="width:500px" src="front_end/images/me.jpg" alt="" />
                     </div>
                   </div>
                 </div>
@@ -152,6 +166,7 @@
 @yield('product_detail')
 @yield('allproduct')
 @yield('viewcart')
+@yield('stripe_view')
 </section>
   <!-- end shop section -->
 
@@ -304,7 +319,147 @@
   <script src="front_end/js/bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <script src="front_end/js/custom.js"></script>
+  <script src="front_end/js/custom.js">
+  </script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    
+
+<script type="text/javascript">
+
+  
+
+$(function() {
+
+  
+
+    /*------------------------------------------
+
+    --------------------------------------------
+
+    Stripe Payment Code
+
+    --------------------------------------------
+
+    --------------------------------------------*/
+
+    
+
+    var $form = $(".require-validation");
+
+     
+
+    $('form.require-validation').bind('submit', function(e) {
+
+        var $form = $(".require-validation"),
+
+        inputSelector = ['input[type=email]', 'input[type=password]',
+
+                         'input[type=text]', 'input[type=file]',
+
+                         'textarea'].join(', '),
+
+        $inputs = $form.find('.required').find(inputSelector),
+
+        $errorMessage = $form.find('div.error'),
+
+        valid = true;
+
+        $errorMessage.addClass('hide');
+
+    
+
+        $('.has-error').removeClass('has-error');
+
+        $inputs.each(function(i, el) {
+
+          var $input = $(el);
+
+          if ($input.val() === '') {
+
+            $input.parent().addClass('has-error');
+
+            $errorMessage.removeClass('hide');
+
+            e.preventDefault();
+
+          }
+
+        });
+
+     
+
+        if (!$form.data('cc-on-file')) {
+
+          e.preventDefault();
+
+          Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+
+          Stripe.createToken({
+
+            number: $('.card-number').val(),
+
+            cvc: $('.card-cvc').val(),
+
+            exp_month: $('.card-expiry-month').val(),
+
+            exp_year: $('.card-expiry-year').val()
+
+          }, stripeResponseHandler);
+
+        }
+
+    
+
+    });
+
+      
+
+    /*------------------------------------------
+
+    --------------------------------------------
+
+    Stripe Response Handler
+
+    --------------------------------------------
+
+    --------------------------------------------*/
+
+    function stripeResponseHandler(status, response) {
+
+        if (response.error) {
+
+            $('.error')
+
+                .removeClass('hide')
+
+                .find('.alert')
+
+                .text(response.error.message);
+
+        } else {
+
+            /* token contains id, last4, and card type */
+
+            var token = response['id'];
+
+                 
+
+            $form.find('input[type=text]').empty();
+
+            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+
+            $form.get(0).submit();
+
+        }
+
+    }
+
+     
+
+});
+
+</script>
 
 </body>
 

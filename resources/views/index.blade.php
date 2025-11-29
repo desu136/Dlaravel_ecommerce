@@ -33,8 +33,12 @@
                 </span>
               </div>
             </a>
+            <a href="{{ route('addToCart',$product->id) }}"style="background:#2a5885; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">Add to cart</a>
+            <a href="{{route('stripe',$product->product_price)}}"style="background:#72d8cfff; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">pay_now</a>
+           </div>
           </div>
-     
+     <div>
+
         </div>
         @endforeach
       </div>

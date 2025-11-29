@@ -17,6 +17,14 @@ Route::get('/cartproduct', [UserController::class, 'cartproduct'])->middleware([
 Route::get('/revomeCartProducts/{id}', [UserController::class, 'revome_cart_products'])->middleware(['auth', 'verified'])->name('removeCartProducts');
 Route::post('/confirm_order', [UserController::class, 'confirmOrder'])->middleware(['auth', 'verified'])->name('confirm_orders');
 
+Route::controller(UserController::class)->middleware(['auth', 'verified'])->group(function(){
+
+    Route::get('stripe/{price}', 'stripe')->name('stripe');
+
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

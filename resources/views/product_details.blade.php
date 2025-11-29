@@ -24,5 +24,6 @@
 </div>
 <div>
 <a href="{{ route('addToCart',$product->id) }}"style="background:#2a5885; color:white; border:none; padding:12px 25px; font-size:16px; borde-radius: 4px; cursor:pointer;">Add to cart</a>
+
 </div>
 @endsection

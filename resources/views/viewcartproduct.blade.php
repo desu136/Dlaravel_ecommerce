@@ -1,5 +1,5 @@
 @extends('maindesign')
-
+<base href="/public">
 @section('viewcart')
 <style>
     /* Add custom styles for the table and images */
@@ -84,6 +84,9 @@
             <div>
               <input class="btn btn-primary" type="submit"  name="submit" value="Confirm Orders" />
             </div>
-           
-          </form>
+            <br>
+            <div>
+             <a href="{{route('stripe',$price)}}"style="background:#72d8cfff; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">pay_now</a>
+            </div>
+         </form>
 @endsection
