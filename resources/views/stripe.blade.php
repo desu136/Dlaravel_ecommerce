@@ -59,30 +59,6 @@
                         @csrf
 
     
-
-                        <div class='form-row row'>
-
-                            <div class='col-xs-12 form-group required'>
-
-                                <label class='control-label'>Address</label> <input
-
-                                    class='form-control' size='4' type='text' name="receiver_address" requered>
-
-                            </div>
-
-                        </div>
-
-                     <div class='form-row row'>
-
-                            <div class='col-xs-12 form-group required'>
-
-                                <label class='control-label'>phone</label> <input
-
-                                    class='form-control' size='4' type='text' name="receiver_phone" requered>
-
-                            </div>
-
-                        </div>
                           <div class='form-row row'>
 
                             <div class='col-xs-12 form-group required'>

@@ -85,8 +85,6 @@
               <input class="btn btn-primary" type="submit"  name="submit" value="Confirm Orders" />
             </div>
             <br>
-            <div>
-             <a href="{{route('stripe',$price)}}"style="background:#72d8cfff; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">pay_now</a>
-            </div>
+           
          </form>
 @endsection

@@ -53,7 +53,7 @@
               <a class="nav-link" href={{ route('index') }}>Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="shop.html">
+              <a class="nav-link" href="{{ route('viewAllProducts') }}">
                 Shop
               </a>
             </li>

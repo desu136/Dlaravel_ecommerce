@@ -19,7 +19,7 @@
     <p class="h4 text-success mb-3">Price: <span class="price">{{ $product->product_price }} Birr</span></p>
     
     <a href="{{ route('addToCart',$product->id) }}" class="btn btn-primary add-to-cart-btn">Add to Cart</a>
-     <a href="{{route('stripe',$product->product_price )}}"style="background:#72d8cfff; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">pay_now</a>
+   
 </div>
 
 <style>

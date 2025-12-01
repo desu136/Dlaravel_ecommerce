@@ -60,7 +60,7 @@ $product_cart->user_id=Auth::id();
 $product_cart->product_id=$product->id;
 
 $product_cart->save();
-return redirect()->back()->with('cart_message','added to the cart');
+return redirect()->route('viewcartproduct')->with('cart_message','added to the cart');
 }
 
 public function cartproduct() {
@@ -69,9 +69,9 @@ public function cartproduct() {
         $count = ProductCart::where("user_id", Auth::id())->count();
         $cart = ProductCart::where('user_id', Auth::id())->get();
     } else {
-        // User is not authenticated, set count to 0 and cart to an empty array
-        $count = 0; // Initialize as 0
-        $cart = []; // Initialize as an empty array
+        
+        $count = 0;
+        $cart = []; 
     }
     
     // Return the view with count and cart variables
@@ -83,26 +83,31 @@ $cart_product=ProductCart::findOrFail($id);
 $cart_product->delete();
 return redirect()->back();
  }
- public function confirmOrder(request $request){
-  $cart_product_id=ProductCart::where('user_id',Auth::id())->get();
-  $address=$request->receiver_address;
-  $phone =$request->receiver_phone;
-  foreach( $cart_product_id as  $cart_product){
- $order =new Orders();
+public function confirmOrder(Request $request)
+{
+    $cart_product_id = ProductCart::where('user_id', Auth::id())->get();
+    $address = $request->receiver_address;
+    $phone = $request->receiver_phone;
 
-   $order->receiver_address=$address;
-   $order->receiver_phone=$phone;
-   $order->user_id = Auth::id();
-   $order->product_id=$cart_product->product_id;
-   $order->save();
-  } 
-  $cart=ProductCart::where('user_id',Auth::id())->get();
-  foreach($cart as $cart){
-    $cart_product=ProductCart::findOrFail($cart->id);
-     $cart_product->delete();
-  }
- return redirect()->back()->with('confirm_order', "Order confirmed");
- }
+    // Create orders with pending payment status
+    foreach ($cart_product_id as $cart_product) {
+        $order = new Orders();
+
+        $order->receiver_address = $address;
+        $order->receiver_phone = $phone;
+        $order->user_id = Auth::id();
+        $order->product_id = $cart_product->product_id;
+        $order->status="pending";
+        $order->payment_status = "pending"; // Set initial payment status to pending
+
+        $order->save();
+    }
+
+    // Optionally delete products from the cart after confirming the order
+    ProductCart::where('user_id', Auth::id())->delete();
+
+    return redirect()->route('myOrders')->with('confirm_order', "Order confirmed. Please proceed to payment.");
+}
  public function myOrder(){
   $orders=Orders::where('user_id',Auth::id())->get();
   return view('viewMyOrder', compact('orders'));
@@ -124,15 +129,12 @@ if(Auth::check()){
     }
 
 
-      public function stripePost(Request $request)
-
+public function stripePost(Request $request)
 
     {
       
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-    
 
         Stripe\Charge::create ([
 
@@ -146,24 +148,16 @@ if(Auth::check()){
 
         ]);
 
-       $cart_product_id=ProductCart::where('user_id',Auth::id())->get();
-  $address=$request->receiver_address;
-  $phone =$request->receiver_phone;
-  foreach( $cart_product_id as  $cart_product){
- $order =new Orders();
+ $orders = Orders::where('user_id', Auth::id())->where('payment_status', 'pending')->get();
 
-   $order->receiver_address=$address;
-   $order->receiver_phone=$phone;
-   $order->user_id = Auth::id();
-   $order->product_id=$cart_product->product_id;
-   $order->payment_status="paid";
-   $order->save();
-  } 
-  $cart=ProductCart::where('user_id',Auth::id())->get();
-  foreach($cart as $cart){
-    $cart_product=ProductCart::findOrFail($cart->id);
-     $cart_product->delete();
-  }
+        foreach ($orders as $order) {
+            // Only update if the order is still pending
+            if ($order->payment_status === 'pending') {
+                $order->payment_status = "paid"; // Update payment status to paid
+                $order->save();
+            }
+            
+        }
 
         Session::flash('success', 'Payment successful!');
 

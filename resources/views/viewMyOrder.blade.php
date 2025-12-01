@@ -5,7 +5,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-          <table style="margin-left: 80px; width: 80%; border-collapse: collapse; font-family: Arial, sans-serif; table-layout: auto;">
+          <table style="margin-left: 0px; width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; table-layout: auto;">
     <thead> 
         <tr style="background-color: #968d8dff;"> 
             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">Customer Name</th>
@@ -14,6 +14,8 @@
             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">product</th>
             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">price</th>
             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">product Image</th>
+             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">delivery</th>
+             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">payment status</th>
              <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">Action</th>
         </tr> 
     </thead>
@@ -27,11 +29,9 @@
                 <td style="padding: 12px;">{{$order->product->product_price}}</td>
                 <td style="padding: 12px;"><img style="max-width: 100%; height: auto;" src="{{ asset('products/'.$order->product->product_image) }}" alt="Product Image"></td>
                 
-            <td style="padding:12px">
-             {{$order->status}}
-
-            </td>
-            
+            <td style="padding:12px"> {{$order->status}}</td>
+            <td style="padding: 12px;">{{$order->payment_status}}</td>
+            <td style="padding: 12px;"><a href="{{route('stripe',$order->product->product_price)}}"style="background:#72d8cfff; color:white; border:none; padding:12px 15px; font-size:16px; borde-radius: 4px; cursor:pointer;">pay_now</a></td>
             </tr>
         @endforeach  
         
