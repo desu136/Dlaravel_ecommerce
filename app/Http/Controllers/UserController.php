@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\ProductCart;
 use App\Models\Orders;
+use Illuminate\Support\Facades\Mail;
 use Session;
 
 use Stripe;
@@ -171,4 +172,54 @@ if(Auth::check()){
         return back();
 
     }
+public function sendEmail(Request $request)
+{
+    if (Auth::check()) {
+        // User is authenticated, count products in cart
+        $count = ProductCart::where("user_id", Auth::id())->count();
+        $cart = ProductCart::where('user_id', Auth::id())->get();
+    } else {
+        // User is not authenticated, set count to 0 and cart to an empty array
+        $count = 0; 
+        $cart = []; 
+    }
+
+    // Validate the request
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'phone' => 'required|string|max:15',
+        'message' => 'required|string|max:1000',
+    ]);
+
+    // Send the email
+    Mail::send('emails.contact', [
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'user_message' => $request->message,
+    ], function($message) use ($request) {
+        $message->to('kasayedesu19@gmail.com')
+                 ->subject('Contact Form Submission from ' . $request->name);
+    });
+
+    return back()->with('success', 'Message sent successfully!');
+}
+
+
+
+public function showContactForm()
+{
+    if (Auth::check()) {
+        // User is authenticated, count products in cart
+        $count = ProductCart::where("user_id", Auth::id())->count();
+        $cart = ProductCart::where('user_id', Auth::id())->get();
+    } else {
+        // User is not authenticated, set count to 0 and cart to an empty array
+        $count = 0; // Initialize as 0
+        $cart = []; // Initialize as an empty array
+    }
+    return view('emailreciever', compact('count'));
+}
+
 }

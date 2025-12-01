@@ -16,6 +16,8 @@ Route::get('/addtocart/{id}', [UserController::class, 'addToCart'])->middleware(
 Route::get('/cartproduct', [UserController::class, 'cartproduct'])->middleware(['auth', 'verified'])->name('viewcartproduct');
 Route::get('/revomeCartProducts/{id}', [UserController::class, 'revome_cart_products'])->middleware(['auth', 'verified'])->name('removeCartProducts');
 Route::post('/confirm_order', [UserController::class, 'confirmOrder'])->middleware(['auth', 'verified'])->name('confirm_orders');
+Route::post('/contact', [UserController::class, 'sendEmail'])->middleware(['auth', 'verified'])->name('contact.send');
+Route::get('/contact', [UserController::class, 'showContactForm'])->middleware(['auth', 'verified'])->name('contact');
 
 Route::controller(UserController::class)->middleware(['auth', 'verified'])->group(function(){
 
