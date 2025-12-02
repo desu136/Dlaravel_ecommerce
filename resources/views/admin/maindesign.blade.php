@@ -75,7 +75,7 @@
                    <li><a href="{{ route('admin.viewCategory') }}">view category</a></li>
                   </ul>
 
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Product</a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="{{ route('admin.addProduct') }}">Add Product</a></li>
                     <li><a href="{{ route('admin.viewProduct') }}">View Product</a></li>

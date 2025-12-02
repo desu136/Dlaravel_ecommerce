@@ -3,14 +3,15 @@
 <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; table-layout: auto;">
     <thead> 
         <tr style="background-color: #f2f2f2;"> 
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">Customer Name</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 200px;">Address</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">Phone</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">product</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">price</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">product Image</th>
-             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">Action</th>
-             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">Pdf</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Customer Name</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">Address</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ;">Phone</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">price</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product Image</th>
+             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">Action</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">payment_status</th>
+             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">Pdf</th>
         </tr> 
     </thead>
     <tbody>
@@ -33,8 +34,8 @@
        </select>
        <input type="submit" name="submit" value="submit" onclick="return confirm('Are you to submit')">
       </form>
-
             </td>
+            <td style="padding: 12px;">{{$order->payment_status}}</td>
             <td style="padding: 12px;">
                 <a class="btn btn-primary" href={{ route('admin.downloadpdf',$order->id) }}> Download pdf</a>
             </td>

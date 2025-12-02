@@ -12,6 +12,7 @@
    Customer Phone   :{{ $data->receiver_phone }}<br><br><br>
    Product          :{{ $data->product->product_title }}<br><br><br>
    Product Price    :{{ $data->product->product_price }}<br><br><br>
+   Payment status   :{{ $data->payment_status}}<br><br><br>
  </center>
 </body>
 </html>

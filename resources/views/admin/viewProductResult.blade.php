@@ -16,16 +16,16 @@
               </div>
             </form>
           </div>
-<table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; table-layout: auto;">
+<table style="width: 60%; border-collapse: collapse; font-family: Arial, sans-serif; table-layout: auto;">
     <thead> 
         <tr style="background-color: #f2f2f2;"> 
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">product_title</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 200px;">product_description</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">product_quantity</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 100px;">product_price</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">product_image</th>
-            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">product_category</th>
-             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; min-width: 150px;">Action</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_title</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_description</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_quantity</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_price</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_image</th>
+            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">product_category</th>
+             <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd; ">Action</th>
         </tr> 
     </thead>
     <tbody>

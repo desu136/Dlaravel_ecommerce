@@ -174,8 +174,8 @@ My name is Desu Kasaye, and I am a software engineering student.</div>
     <footer class=" footer_section">
       <div class="container">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Web Tech Knowledge</a>
+          &copy; <span id="displayYear"></span> All Rights Reserved By D.K
+          
         </p>
       </div>
     </footer>
