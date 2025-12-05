@@ -9,7 +9,8 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/api/index.php"
+      "destination": "/api/index.php"  
     }
-  ]
+  ],
+  "buildCommand": "echo skip..."
 }
